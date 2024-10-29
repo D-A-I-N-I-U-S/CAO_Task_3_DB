@@ -4,7 +4,10 @@ import sqlite3
 def conn_db():
     conn = sqlite3.connect("budget.sqlite")
     cursor = conn.cursor()
-    return conn, cursor  # return both conn and cursor (not sure why - check this)
+    return (
+        conn,
+        cursor,
+    )  # return both conn and cursor, because I am using them both in the functions
 
 
 def close_db(conn):
@@ -16,14 +19,9 @@ def create_table():
     conn, cursor = conn_db()
     cursor.execute(
         """
-    CREATE TABLE IF NOT EXISTS Budget (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        type TEXT NOT NULL,
-        amount REAL NOT NULL,
-        category TEXT NOT NULL
-    )
+    CREATES TABLE IF STILL DOES NOT EXIST ONE
     """
-    )  # CREATE TABLE IF NOT EXISTS -- edit to this, if I am getting an error
+    )  # CREATES TABLE IF NOT EXISTS -- edit to this, if I am getting an error
     close_db(conn)
 
 
@@ -115,7 +113,7 @@ def main_menu():
         elif choice == "7":
             update_transaction()
         elif choice == "8":
-            print("Thank you for using Finance Tracker. Goodbye!")
+            print("Be gon vit im. Goodbye!")
             break
         else:
             print("Invalid choice. Please try again.")
