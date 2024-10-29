@@ -2,7 +2,7 @@ import sqlite3
 
 
 def conn_db():
-    conn = sqlite3.connect("budget.sqlite")
+    conn = sqlite3.connect("finances.sqlite")
     cursor = conn.cursor()
     return (
         conn,
@@ -19,7 +19,12 @@ def create_table():
     conn, cursor = conn_db()
     cursor.execute(
         """
-    CREATES TABLE IF STILL DOES NOT EXIST ONE
+        CREATE TABLE IF NOT EXISTS Finances (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            type TEXT NOT NULL,
+            amount REAL NOT NULL,
+            category TEXT NOT NULL
+        )
     """
     )  # CREATES TABLE IF NOT EXISTS -- edit to this, if I am getting an error
     close_db(conn)
